@@ -20,7 +20,6 @@ def login_view(request):
         if not email or not password:
             return JsonResponse({"error": "Email and password are required."}, status=400)
 
-        # Forward login request to Ayor's backend
         response = requests.post(f"{BASE_URL}/auth/jwt/create/", json={
             "email": email,
             "password": password
