@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AistormhackConfig(AppConfig):
+class AnalyticsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.authentication'
+    name = 'apps.analytics'
