@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.urls import path
 
-from aiStormHack.views.auth_view import  login_view, refresh_view
+from apps.authentication.views.auth_view import  login_view, refresh_view
 
 
 

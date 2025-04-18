@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from decouple import config  # <-- make sure python-decouple is installed
+from decouple import config  
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,7 +24,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework', 
-    'aiStormHack'
 ]
 
 MIDDLEWARE = [
