@@ -3,14 +3,13 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 import requests
-import json
 from decouple import config
 
 BASE_URL = config("BASE_URL")
 
 
 @method_decorator(csrf_exempt, name='dispatch')
-class DashboardStatsView(View):
+class OrdersAnalyticsView(View):
     def get(self, request, shop_id):
         try:
             access_token = request.headers.get("Authorization")
@@ -23,19 +22,18 @@ class DashboardStatsView(View):
             if access_token.startswith("Bearer "):
                 access_token = access_token.split("Bearer ")[-1]
 
-            url = f"{BASE_URL}/api/shops/{shop_id}/dashboard-stats/"
+            url = f"{BASE_URL}/api/shops/{shop_id}/analytics/orders/"
             headers = {"Authorization": f"Bearer {access_token}"}
 
             response = requests.get(url, headers=headers)
 
             return JsonResponse(
                 response.json() if response.status_code == 200 else {
-                    "error": "Failed to fetch dashboard stats",
+                    "error": "Failed to fetch orders analytics",
                     "status_code": response.status_code,
-                    "response": response.text  
+                    "response": response.text
                 },
                 status=response.status_code
             )
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=500)
-
