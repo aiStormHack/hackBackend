@@ -55,7 +55,6 @@ def refresh_view(request):
         if not refresh:
             return JsonResponse({"error": "Refresh token is required."}, status=400)
 
-        # Forward refresh token request to Ayor's backend
         response = requests.post(f"{BASE_URL}/auth/jwt/refresh/", json={
             "refresh": refresh
         })
